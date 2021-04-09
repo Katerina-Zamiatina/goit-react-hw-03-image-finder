@@ -1,10 +1,10 @@
 import { PureComponent } from 'react';
 // import { useState, useEffect, useRef } from 'react';
-import ImageGallery from './components/ImageGallery/ImageGallery';
+import ImageGallery from './components/ImageGallery';
 import imagesApi from './services/imagesApi';
-import Searchbar from './components/Searchbar/Searchbar';
-import Modal from 'react';
-import Button from './components/Button/Button';
+import Searchbar from './components/Searchbar';
+import Modal from './components/Modal';
+import Button from './components/Button';
 
 class App extends PureComponent {
   state = {
@@ -40,6 +40,7 @@ class App extends PureComponent {
     imagesApi
       .fetchImagesQuery(options)
       .then(images => {
+        console.log('IMAGES FROM APP', images);
         this.setState(prevState => ({
           images: [...prevState.images, ...images],
           currentPage: prevState.currentPage + 1,
