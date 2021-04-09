@@ -54,7 +54,6 @@ class App extends PureComponent {
   };
 
   openModal = e => {
-    console.log('largeImageUrl', e.target.dataset.url);
     this.setState({
       modalImgUrl: e.target.dataset.url,
       showModal: true,
@@ -76,7 +75,7 @@ class App extends PureComponent {
         <Searchbar onSubmit={this.onChangeQuery} />
         {error && <p>Something went wrong: {error.message}</p>}
 
-        <ImageGallery images={images} onClick={this.openModal} />
+        <ImageGallery list={images} onClick={this.openModal} />
         {showModal && (
           <Modal onClose={this.closeModal}>
             <img src={modalImgUrl} alt="" />

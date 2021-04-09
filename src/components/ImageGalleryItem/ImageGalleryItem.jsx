@@ -1,12 +1,27 @@
-const ImageGalleryItem = ({ url, dataUrl, tags }) => (
-  <li className="ImageGalleryItem">
+import PropTypes from 'prop-types';
+// import defaultImg from './default.svg';
+
+const ImageGalleryItem = ({ src, dataUrl, alt }) => (
+  <>
     <img
-      src={url}
-      alt={tags}
+      src={src}
+      alt={alt}
       data-url={dataUrl}
       className="ImageGalleryItem-image"
     />
-  </li>
+  </>
 );
+
+ImageGalleryItem.defaultProps = {
+  alt: 'Фото',
+  // webformatURL: defaultImg,
+  // largeImageURL: defaultImg,
+};
+
+ImageGalleryItem.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  dataUrl: PropTypes.string,
+};
 
 export default ImageGalleryItem;

@@ -1,14 +1,15 @@
 import ImageGalleryItem from '../ImageGalleryItem';
 
-const ImageGallery = ({ images, onClick }) => (
+const ImageGallery = ({ list, onClick }) => (
   <ul className="ImageGallery" onClick={onClick}>
-    {images.map(({ id, webformatURL, largeImageUrl, tags }) => (
-      <ImageGalleryItem
-        key={id}
-        url={webformatURL}
-        title={tags}
-        dataUrl={largeImageUrl}
-      />
+    {list.map(image => (
+      <li key={image.id} className="ImageGalleryItem">
+        <ImageGalleryItem
+          src={image.webformatURL}
+          alt={image.tags}
+          dataUrl={image.largeImageUrl}
+        />
+      </li>
     ))}
   </ul>
 );
