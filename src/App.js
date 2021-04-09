@@ -40,7 +40,6 @@ class App extends PureComponent {
     imagesApi
       .fetchImagesQuery(options)
       .then(images => {
-        console.log('IMAGES FROM APP', images);
         this.setState(prevState => ({
           images: [...prevState.images, ...images],
           currentPage: prevState.currentPage + 1,
