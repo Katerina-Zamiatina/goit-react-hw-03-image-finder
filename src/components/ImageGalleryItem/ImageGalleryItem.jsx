@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-// import defaultImg from './default.svg';
+import defaultImg from './default.jpeg';
 
 const ImageGalleryItem = ({ src, dataUrl, alt }) => (
   <>
@@ -14,8 +14,8 @@ const ImageGalleryItem = ({ src, dataUrl, alt }) => (
 
 ImageGalleryItem.defaultProps = {
   alt: 'Фото',
-  // webformatURL: defaultImg,
-  // largeImageURL: defaultImg,
+  webformatURL: defaultImg,
+  largeImageURL: defaultImg,
 };
 
 ImageGalleryItem.propTypes = {

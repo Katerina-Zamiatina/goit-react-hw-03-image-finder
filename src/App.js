@@ -1,10 +1,12 @@
 import { PureComponent } from 'react';
+import Loader from 'react-loader-spinner';
 // import { useState, useEffect, useRef } from 'react';
 import ImageGallery from './components/ImageGallery';
-import imagesApi from './services/imagesApi';
 import Searchbar from './components/Searchbar';
 import Modal from './components/Modal';
 import Button from './components/Button';
+
+import imagesApi from './services/imagesApi';
 
 class App extends PureComponent {
   state = {
@@ -75,13 +77,21 @@ class App extends PureComponent {
         <Searchbar onSubmit={this.onChangeQuery} />
         {error && <p>Something went wrong: {error.message}</p>}
 
-        <ImageGallery list={images} onClick={this.openModal} />
+        <ImageGallery images={images} onClick={this.openModal} />
         {showModal && (
           <Modal onClose={this.closeModal}>
             <img src={modalImgUrl} alt="" />
           </Modal>
         )}
-        {isLoading && <p>Loading...</p>}
+        {isLoading && (
+          <Loader
+            type="ThreeDots"
+            color="#00BFFF"
+            height={80}
+            width={80}
+            className="Loader"
+          />
+        )}
         {shouldRenderBtn && <Button onClick={this.fetchImages} />}
       </div>
     );

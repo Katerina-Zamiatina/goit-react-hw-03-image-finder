@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import ImageGalleryItem from '../ImageGalleryItem';
 
-const ImageGallery = ({ list, onClick }) => (
+const ImageGallery = ({ images, onClick }) => (
   <ul className="ImageGallery" onClick={onClick}>
-    {list.map(image => (
+    {images.map(image => (
       <li key={image.id} className="ImageGalleryItem">
         <ImageGalleryItem
           src={image.webformatURL}
@@ -13,5 +14,10 @@ const ImageGallery = ({ list, onClick }) => (
     ))}
   </ul>
 );
+
+ImageGallery.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default ImageGallery;
