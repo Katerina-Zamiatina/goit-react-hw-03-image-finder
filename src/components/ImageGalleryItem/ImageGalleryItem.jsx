@@ -1,6 +1,11 @@
-const ImageGalleryItem = () => (
+const ImageGalleryItem = ({ url, dataUrl, tags }) => (
   <li className="ImageGalleryItem">
-    <img src="" alt="" className="ImageGalleryItem-image" />
+    <img
+      src={url}
+      alt={tags}
+      data-url={dataUrl}
+      className="ImageGalleryItem-image"
+    />
   </li>
 );
 
