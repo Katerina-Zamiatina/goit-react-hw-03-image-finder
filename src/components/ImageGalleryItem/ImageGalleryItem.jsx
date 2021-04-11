@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types';
 import defaultImg from './default.jpeg';
 
-const ImageGalleryItem = ({ src, dataUrl, alt }) => (
-  <>
-    <img
-      src={src}
-      alt={alt}
-      data-url={dataUrl}
-      className="ImageGalleryItem-image"
-    />
-  </>
-);
+const ImageGalleryItem = ({ src, dataUrl, alt, onClick }) => {
+  const modalImage = () => onClick(dataUrl);
+  return (
+    <>
+      <img
+        src={src}
+        alt={alt}
+        data-url={dataUrl}
+        className="ImageGalleryItem-image"
+        onClick={modalImage}
+      />
+    </>
+  );
+};
 
 ImageGalleryItem.defaultProps = {
   alt: 'Фото',
