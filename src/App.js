@@ -20,37 +20,22 @@ const App = () => {
   useEffect(() => {
     if (!searchQuery) return;
 
-    const fetchImages = () => {
+    const fetchImages = async () => {
       setIsLoading(true);
-      imagesApi
-        .fetchImagesQuery({ searchQuery, currentPage })
-        .then(resImages => {
-          setImages(prevImages => [...prevImages, ...resImages]);
-          if (currentPage !== 1) {
-            scrollToLoadBtn();
-          }
-        })
-        .catch(error => setError(error.message))
-        .finally(() => setIsLoading(false));
+      try {
+        const hits = await imagesApi.fetchImagesQuery(searchQuery, currentPage);
+
+        setImages(prevImages => [...prevImages, ...hits]);
+
+        if (currentPage !== 1) {
+          scrollToLoadBtn();
+        }
+      } catch (error) {
+        setError({ error });
+      } finally {
+        setIsLoading(false);
+      }
     };
-
-    // НЕ РАБОТАЕТ???
-    // const fetchImages = async () => {
-    //   setIsLoading(true);
-    //   try {
-    //     const { hits } = await fetchImagesQuery(searchQuery, currentPage);
-
-    //     setImages(prevImages => [...prevImages, ...hits]);
-
-    //     if (currentPage !== 1) {
-    //       scrollToLoadBtn();
-    //     }
-    //   } catch (error) {
-    //     setError({ error });
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
 
     fetchImages();
   }, [searchQuery, currentPage]);
